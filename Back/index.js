@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import io from 'socket.io';
 import http from 'http';
+import SocketService from './services/socket.service';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -21,7 +22,11 @@ socket.on('connection', (socket) => {
   
   socket.on('disconnect', () => {
     console.log('a user disconnect');
-  })
+  });
+
+  socket.on('connect-user', (data) => {
+    console.log(data);
+  });
 });
 
 const port = process.env.PORT || 3001;
