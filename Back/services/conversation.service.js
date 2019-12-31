@@ -49,12 +49,24 @@ class ConversationSerivce {
             model: User,
             attributes: ['id', 'Username'],
             as: 'ConversationOfUser2'
+          },
+          {
+            model: Message,
+            as: 'ConversationHasMessages',
+            attributes: ['createdAt', 'Content', 'UserId'],
+            required: false
           }
         ],
         order: [['updatedAt', 'DESC']]
       });
-
-      return conversations;
+      // return conversations;
+      return conversations.map(c => ({
+        id: c.id,
+        updatedAt: c.updatedAt,
+        User1: c.ConversationOfUser1,
+        User2: c.ConversationOfUser2,
+        LastMessage: c.ConversationHasMessages ? c.ConversationHasMessages[0] : undefined
+      }));
     }
     catch (error) {
       console.log(error);
@@ -66,6 +78,7 @@ class ConversationSerivce {
     const t = await sequelize.transaction({
       isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.SERIALIZABLE
     });
+
     try {
       await Message.create({
         ConversationId: conversationId,
@@ -95,7 +108,7 @@ class ConversationSerivce {
 
   static async getMessages (userId, conversationId) {
     try {
-      const messages = await Message.findAll({
+      const conversation = await Conversation.findAll({
         where: {
           [Sequelize.Op.or]: [
             {
@@ -105,12 +118,23 @@ class ConversationSerivce {
               UserId2: userId
             }
           ],
-          ConversationId: conversationId
-        },
-        order: [['createdAt', 'ASC']]
+          id: conversationId
+        }
       });
 
-      return messages;
+      if(conversation) {
+        const messages = Message.findAll({
+          where: {
+            ConversationId: conversationId
+          },
+          order: [['createdAt', 'ASC']]
+        });
+
+        return messages
+      }
+      else {
+        return [];
+      }
     }
     catch (error) {
       console.log(error);

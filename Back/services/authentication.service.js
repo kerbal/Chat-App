@@ -85,7 +85,8 @@ class AuthenticationService {
 
       await t.commit();
       return ({
-        token
+        token,
+        username: user.Username
       });
     }
     catch (error) {

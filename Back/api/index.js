@@ -31,7 +31,7 @@ route.put('/login', async (req, res) => {
       throw new Error(response);
     }
     res.status(200).send({
-      token: response.token
+      ...response
     });
   }
   catch (error) {
