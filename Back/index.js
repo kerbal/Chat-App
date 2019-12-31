@@ -4,11 +4,15 @@ import cors from 'cors';
 import io from 'socket.io';
 import http from 'http';
 import SocketService from './services/socket.service';
+import { sequelize } from './config/sequelize';
+import route from './api';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 app.use(cors());
+
+app.use(route);
 
 app.get('/', (req, res) => {
   res.status(200).send('running');
@@ -31,5 +35,8 @@ socket.on('connection', (socket) => {
 
 const port = process.env.PORT || 3001;
 server.listen(port, async () => {
-  console.log(`Server is up on port ${port}`);
+  sequelize.authenticate().then(() => {
+    console.log('Database connected');
+    console.log(`Server is up on port ${port}`);
+  })
 });

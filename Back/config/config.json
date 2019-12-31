@@ -2,7 +2,7 @@
   "development": {
     "username": "khanh",
     "password": 1234,
-    "database": "kerbal_chat_db",
+    "database": "chatapp_db",
     "host": "localhost",
     "dialect": "postgres",
     "operatorsAliases": false
@@ -10,7 +10,7 @@
   "test": {
     "username": "khanh",
     "password": 1234,
-    "database": "kerbal_chat_db",
+    "database": "chatapp_db",
     "host": "localhost",
     "dialect": "postgres",
     "operatorsAliases": false
