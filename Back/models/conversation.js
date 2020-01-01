@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Conversation.hasMany(models.Message, {
       as: 'ConversationHasMessages',
-      foreignKey: 'id'
+      foreignKey: 'ConversationId'
     });
   };
   return Conversation;

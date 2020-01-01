@@ -85,6 +85,7 @@ class AuthenticationService {
 
       await t.commit();
       return ({
+        id: user.id,
         token,
         username: user.Username
       });

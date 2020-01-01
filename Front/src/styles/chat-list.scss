@@ -1,0 +1,14 @@
+.chat-list {
+  // border-right: 2px solid gray;
+  .active {
+    .single-chat-item {
+      background: #ecf0f1;
+    }
+  }
+}
+
+.single-chat-item:hover {
+  background: #ecf0f1;
+  // border-top: 1px solid gray;
+  // border-bottom: 1px solid gray;
+}

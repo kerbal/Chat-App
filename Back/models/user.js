@@ -9,13 +9,18 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function(models) {
     // associations can be defined here
     User.hasMany(models.Conversation, {
-      as: 'UserHasConversations',
-      foreignKey: 'id'
+      as: 'UserStartConversations',
+      foreignKey: 'UserId1'
     });
-
+    
+    User.hasMany(models.Conversation, {
+      as: 'UserReceiveConversations',
+      foreignKey: 'UserId2'
+    });
+    
     User.hasMany(models.Message, {
       as: 'UserHasMessages',
-      foreignKey: 'id'
+      foreignKey: 'UserId'
     });
   };
   return User;

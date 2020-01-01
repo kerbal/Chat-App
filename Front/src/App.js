@@ -1,7 +1,5 @@
 import React from 'react';
-import SocketProvider from './contexts/socket.context';
 import Main from './components/MainPage/Main';
-import Header from './components/Header/Header';
 import { Switch, Route, Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import Register from './components/AuthenticationPage/Register';
@@ -15,6 +13,8 @@ function App() {
       <Switch>
         <Route exact path='/' component={Register}/>
         <Route exact path='/login' component={Login}/>
+        <Route exact path='/chat' component={Main}/>
+        <Route exact path='/chat/:id' component={Main}/>
       </Switch>
     </Router>
   );

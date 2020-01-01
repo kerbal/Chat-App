@@ -1,5 +1,6 @@
 import React from 'react';
 import io from 'socket.io-client';
+import CookieService from '../services/cookie.service';
 
 export const SocketContext = React.createContext();
 
@@ -20,14 +21,14 @@ class SocketProvider extends React.Component {
   }
 
   async componentDidMount () {
-    const username = window.prompt('username?');
-    const socket = io('localhost:3001')
-    socket.emit('connect-user', {
-      username
-    });
-    this.setState({
-      socket
-    });
+    // const username = CookieService.getInfo('username');
+    // const socket = io('localhost:3001')
+    // socket.emit('connect-user', {
+    //   username
+    // });
+    // this.setState({
+    //   socket
+    // });
   }
 }
 

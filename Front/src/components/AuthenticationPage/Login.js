@@ -75,7 +75,7 @@ const Login = (props) => {
             }
           </Button>
           <div className="text-center">
-            <em>Need an account? <Link to="/">Register</Link></em>
+            <em>Need an account? <Link to="/" className="text-primary">Register</Link></em>
           </div>
         </Col>
         <Col md={4} lg={4}/>

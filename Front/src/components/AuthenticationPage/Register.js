@@ -31,8 +31,6 @@ const Register = (props) => {
     }
   }
 
-  console.log(CookieService.getInfo());
-
   if(CookieService.getInfo()) {
     return <Redirect to="/chat"/>;
   }
@@ -89,7 +87,7 @@ const Register = (props) => {
             }
           </Button>
           <div className="text-center">
-            <em>Already has account? <Link to="/login">Login</Link></em>
+            <em>Already has account? <Link to="/login" className="text-primary">Login</Link></em>
           </div>
         </Col>
         <Col md={4} lg={4}/>

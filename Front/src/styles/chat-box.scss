@@ -1,0 +1,36 @@
+.my-message {
+  float: right;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+  background: #2d3436;
+  color: white;
+}
+
+.your-message {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  background: #ecf0f1;
+}
+
+.message {
+  width: fit-content;
+  padding: 10px;
+  margin: 5px;
+}
+
+.messages {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  max-height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.chat-box {
+  white-space: pre-wrap;
+  height: 100%;
+}

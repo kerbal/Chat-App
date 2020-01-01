@@ -54,18 +54,20 @@ class ConversationSerivce {
             model: Message,
             as: 'ConversationHasMessages',
             attributes: ['createdAt', 'Content', 'UserId'],
+            limit: 1,
+            order: [['createdAt', 'DESC']],
             required: false
           }
         ],
         order: [['updatedAt', 'DESC']]
       });
-      // return conversations;
+
       return conversations.map(c => ({
         id: c.id,
         updatedAt: c.updatedAt,
         User1: c.ConversationOfUser1,
         User2: c.ConversationOfUser2,
-        LastMessage: c.ConversationHasMessages ? c.ConversationHasMessages[0] : undefined
+        LastMessage: c.ConversationHasMessages.length > 0 ? c.ConversationHasMessages[0] : {Content: ""}
       }));
     }
     catch (error) {
@@ -80,6 +82,12 @@ class ConversationSerivce {
     });
 
     try {
+      const conversation = await Conversation.findOne({
+        where: {
+          id: conversationId
+        }
+      });
+
       await Message.create({
         ConversationId: conversationId,
         UserId: userId,
@@ -89,7 +97,7 @@ class ConversationSerivce {
       });
 
       await Conversation.update({
-        updatedAt: new Date()
+        UserId1: conversation.UserId1
       }, {
         where: {
           id: conversationId

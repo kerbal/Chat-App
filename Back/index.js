@@ -31,6 +31,12 @@ socket.on('connection', (socket) => {
   socket.on('connect-user', (data) => {
     console.log(data);
   });
+
+  setTimeout(() => {
+    socket.emit('reply-user', {
+      message: 'welcome'
+    });
+  }, 2000);
 });
 
 const port = process.env.PORT || 3001;
