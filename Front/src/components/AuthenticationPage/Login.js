@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Form, Col, Button, Alert } from 'react-bootstrap';
+import { Container, Row, Form, Col, Button } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
 import AuthenticationService from '../../services/authentication.service';
 import { history } from '../../App';

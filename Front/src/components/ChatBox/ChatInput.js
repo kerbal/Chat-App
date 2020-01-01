@@ -7,6 +7,7 @@ const ChatInput = (props) => {
   const onSend = async () => {
     const content = contentRef.current.value;
     await props.conversation.sendMessage(content);
+    contentRef.current.value = '';
     props.onRefresh();
   }
 

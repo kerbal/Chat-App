@@ -14,7 +14,7 @@ const ChatList = (props) => {
     <div className="chat-list">
       {
         _conversations.map(c => (
-          <SingleChat conversation={c}/>
+          <SingleChat conversation={c} key={c.id}/>
         ))
       }
     </div>

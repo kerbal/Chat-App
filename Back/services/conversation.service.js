@@ -1,5 +1,6 @@
 import { sequelize, Sequelize } from "../config/sequelize";
 import { Conversation, User, Message } from '../models';
+import { _io } from "..";
 
 class ConversationSerivce {
   static async startConversation (userId1, userId2) {
@@ -106,6 +107,14 @@ class ConversationSerivce {
       });
 
       await t.commit();
+
+      _io.sockets.in(`room-${conversation.UserId1}-${conversation.UserId2}`).emit('receive-message', {
+        message: {
+          id: 100,
+          Content: content,
+          UserId: userId
+        }
+      });
     }
     catch (error) {
       console.log(error);

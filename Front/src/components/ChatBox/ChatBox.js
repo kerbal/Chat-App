@@ -3,7 +3,6 @@ import { ConversationContext } from '../../contexts/conversation.context';
 import CookieService from '../../services/cookie.service';
 import Messages from './Messages';
 import ChatInput from './ChatInput';
-import io from 'socket.io-client';
 
 const ChatBox = (props) => {
   const [ refresh, setRefresh ] = useState(false);

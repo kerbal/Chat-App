@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import CookieService from '../../services/cookie.service';
 import { Row, Col, Image } from 'react-bootstrap';
@@ -7,6 +7,16 @@ const SingleChat = (props) => {
   const userId = CookieService.getInfo('id');
   const { conversation } = props;
   
+  const [_refresh, setRefresh ] = useState(true);
+  const refresh = () => {
+    setRefresh(false);
+    setRefresh(true);
+  }
+
+  useEffect(() => {
+    conversation.refresh.push(refresh);
+  }, []);
+
   return (
     <NavLink to={`/chat/${conversation.id}`}>
       <div className="p-3 single-chat-item">
@@ -20,6 +30,7 @@ const SingleChat = (props) => {
             </strong>
             <p className="m-0">
               {
+                refresh &&
                 conversation.LastMessage.Content
               }
             </p>

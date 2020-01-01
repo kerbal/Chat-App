@@ -3,6 +3,16 @@ import SingleMessage from './SingleMessage';
 
 const Messages = (props) => {
   const [ _conversation, setConversation ] = useState(props.conversation);
+  const [ _refresh, setRefresh ] = useState(true);
+
+  const refresh = () => {
+    setRefresh(false);
+    setRefresh(true);
+  }
+
+  useEffect(() => {
+    props.conversation.refresh.push(refresh);
+  }, []);
 
   useEffect(() => {
     const getConversation = async () => {
@@ -16,6 +26,7 @@ const Messages = (props) => {
   return (
     <div className="messages">
       {
+        _refresh &&
         _conversation.Messages.map(m => (
           <SingleMessage message={m}/>
         ))

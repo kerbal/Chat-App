@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import SocketProvider, { SocketContext } from '../../contexts/socket.context';
+import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import SideBarHeader from '../Header/SidebarHeader';
 import ConversationProvider from '../../contexts/conversation.context';
@@ -8,7 +7,6 @@ import ChatBox from '../ChatBox/ChatBox';
 
 const Main = (props) => {
   return (
-    <SocketProvider>
     <ConversationProvider>
       <Container fluid className="main-window">
         <Row style={{height: "100%"}}>
@@ -23,7 +21,6 @@ const Main = (props) => {
         </Row>
       </Container>
     </ConversationProvider>
-    </SocketProvider>
   )
 }
 

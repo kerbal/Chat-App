@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
 import CookieService from '../../services/cookie.service';
 import { history } from '../../App';
 

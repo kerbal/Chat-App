@@ -3,7 +3,6 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import io from 'socket.io';
 import http from 'http';
-import SocketService from './services/socket.service';
 import { sequelize } from './config/sequelize';
 import route from './api';
 
@@ -19,24 +18,17 @@ app.get('/', (req, res) => {
 });
 
 const server = http.Server(app);
-const socket = io(server);
+export const _io = io(server);
+export const socket = _io;
 
 socket.on('connection', (socket) => {
-  console.log('a user connect');
-  
   socket.on('disconnect', () => {
-    console.log('a user disconnect');
+
   });
 
   socket.on('connect-user', (data) => {
-    console.log(data);
+    socket.join(`room-${data.UserId1}-${data.UserId2}`);
   });
-
-  setTimeout(() => {
-    socket.emit('reply-user', {
-      message: 'welcome'
-    });
-  }, 2000);
 });
 
 const port = process.env.PORT || 3001;

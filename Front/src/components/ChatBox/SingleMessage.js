@@ -31,7 +31,6 @@ const SingleMessage = (props) => {
         </Col>
         <Col md={4}/>
       </Row>
-      
   )
 }
 
