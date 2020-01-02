@@ -41,7 +41,7 @@ const Register = (props) => {
         <Col md={4} lg={4}/>
         <Col md={4} lg={4}>
           <div className="text-center">
-            <h1 className="my-5"><strong>Chat App</strong></h1>
+            <h1 className="my-5"><strong><span className="far fa-comments"/> Chat App <span className="far fa-comments"/></strong></h1>
             <h2 className="my-5">Register</h2>
           </div>
           <Form autoComplete="off">

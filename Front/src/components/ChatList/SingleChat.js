@@ -30,7 +30,7 @@ const SingleChat = (props) => {
             </strong>
             <p className="m-0">
               {
-                refresh &&
+                _refresh &&
                 conversation.LastMessage.Content
               }
             </p>

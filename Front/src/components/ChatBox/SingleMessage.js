@@ -1,5 +1,4 @@
 import React from 'react';
-import cx from 'classnames';
 import CookieService from '../../services/cookie.service';
 import { Row, Col } from 'react-bootstrap';
 
@@ -7,10 +6,6 @@ const SingleMessage = (props) => {
   const { message } = props;
 
   const userid = CookieService.getInfo('id');
-  const className = {
-    'my-message': userid === message.UserId,
-    'your-message': userid !== message.UserId,
-  }
 
   return (
     userid === message.UserId ?

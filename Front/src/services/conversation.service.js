@@ -1,8 +1,26 @@
 import APIService from "./api.service";
-import { CONVERSATIONS, MESSAGES } from "../config/routes";
+import { CONVERSATIONS, MESSAGES, CONVERSATION } from "../config/routes";
 import Conversation from "../objects/conversation.object";
 
 class ConversationService {
+  static async createConversation (userId) {
+    try {
+      const response = await new APIService(
+        'post',
+        CONVERSATION,
+        undefined,
+        {
+          userId2: userId
+        },
+        true
+      ).request();
+      return response.conversation;
+    }
+    catch (error) {
+      return APIService.handleError(error);
+    }
+  }
+
   static async getConversations () {
     try {
       const response = await new APIService(

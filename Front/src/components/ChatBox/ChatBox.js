@@ -30,7 +30,7 @@ const ChatBox = (props) => {
       </div>
       <hr className="m-0"/>
 
-      <div className="px-2 flex-grow-1 position-relative">
+      <div className="flex-grow-1 position-relative">
         {
           !refresh &&
           <Messages conversation={conversation}/>

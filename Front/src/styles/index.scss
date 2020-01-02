@@ -8,6 +8,7 @@ body {
 
 .btn {
   background: black!important;
+  border: 1px solid black;
 }
 
 ::-webkit-scrollbar {
@@ -32,3 +33,4 @@ body {
 @import './sidebar.scss';
 @import './link.scss';
 @import './chat-box.scss';
+@import './form.scss';
