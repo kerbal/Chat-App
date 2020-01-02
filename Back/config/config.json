@@ -10,7 +10,7 @@
   "test": {
     "username": "khanh",
     "password": 1234,
-    "database": "chatapp_db",
+    "database": "chatapp_db_test",
     "host": "localhost",
     "dialect": "postgres",
     "operatorsAliases": false

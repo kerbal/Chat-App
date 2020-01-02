@@ -1,7 +1,22 @@
 # Chat-App
 Instant chat app with ReactJS, NodeJS and Socket.io.
 
-(Cloning FB Messenger. Ahihi)
+(Clone "sương sương" FB Messenger. Ahihi)
+
+## How to run
+### Backend
+1. run "npm install -g sequelize-cli" to install sequelize-cli globally
+2. run "yarn install" to install all the dependencies
+3. change config in "config/config.json" and "config/development.config.js" to match your system
+4. run "sequelize db:migrate" to create database and table
+5. run "yarn dev"
+
+### Frontend
+1. run "yarn install"
+2. run "yarn start" (run backend first)
+3. register 2 accounts and begin chatting with yourself
+4. explore
+5. FIND ME BUGS. PLEASE. IT CONTAINS LOTS OF BUGSSSSSS. :D
 
 ## Database
 
@@ -15,4 +30,4 @@ Instant chat app with ReactJS, NodeJS and Socket.io.
 ![Login](https://i.imgur.com/Z9liA91.png)
 ![UI](https://i.imgur.com/k6cCb8X.png)
 
-It's just an simple b&w UI. You can simply register an account and search someone by their name or email to begin chatting. Of course, it has "seen" feature. :D
+It's just an simple b&w UI. You can simply register an account and search someone by their name or email then begin chatting. Of course, it has "seen" feature (not yet implemented). :D
