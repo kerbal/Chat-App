@@ -43,7 +43,8 @@ route.put('/login', async (req, res) => {
 
 route.get('/search', verifyUser, async (req, res) => {
   try {
-    const users = await UserService.search(req.query.pattern);
+    const { userId } = await TokenService.decodeToken(req.headers.authorization);
+    const users = await UserService.search(req.query.pattern, userId);
     res.status(200).send({
       users
     });
@@ -59,11 +60,12 @@ route.post('/conversation', verifyUser, async (req, res) => {
   try {
     const { userId } = await TokenService.decodeToken(req.headers.authorization);
     const response = await ConversationSerivce.startConversation(userId, req.body.userId2);
-    if(response) {
+    if(typeof response === 'string') {
       throw new Error(response);
     }
     res.status(200).send({
-      message: 'conversation created!'
+      message: 'conversation created!',
+      conversation: response
     });
   }
   catch (error) {

@@ -21,7 +21,7 @@ class AuthenticationService {
         }
       });
       if(user) {
-        return `Username or email has been taken!`;
+        return `Email or display name has been taken!`;
       }
       await User.create({
         Email: email,
@@ -59,7 +59,7 @@ class AuthenticationService {
       });
 
       if(!user) {
-        return 'Wrong username or password!';
+        return 'Wrong email or password!';
       }
 
       let token;

@@ -29,6 +29,11 @@ socket.on('connection', (socket) => {
   socket.on('connect-user', (data) => {
     socket.join(`room-${data.UserId1}-${data.UserId2}`);
   });
+
+  socket.on('connect-user-conversation', (data) => {
+    console.log(data);
+    socket.join(`conversation-${data.UserId}`);
+  })
 });
 
 const port = process.env.PORT || 3001;

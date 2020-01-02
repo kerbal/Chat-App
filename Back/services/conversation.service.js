@@ -9,7 +9,7 @@ class ConversationSerivce {
     });
 
     try {
-      await Conversation.findOrCreate({
+      const conversation = await Conversation.findOrCreate({
         where: {
           UserId1: userId1,
           UserId2: userId2
@@ -18,6 +18,51 @@ class ConversationSerivce {
       });
 
       await t.commit();
+
+      const c = await Conversation.findOne({
+        attributes: ['id', 'updatedAt'],
+        where: {
+          id: conversation[0].id
+        },
+        include: [
+          {
+            model: User,
+            attributes: ['id', 'Username'],
+            as: 'ConversationOfUser1'
+          },
+          {
+            model: User,
+            attributes: ['id', 'Username'],
+            as: 'ConversationOfUser2'
+          },
+          {
+            model: Message,
+            as: 'ConversationHasMessages',
+            attributes: ['createdAt', 'Content', 'UserId'],
+            limit: 1,
+            order: [['createdAt', 'DESC']],
+            required: false
+          }
+        ]
+      });
+
+      _io.sockets.in(`conversation-${userId2}`).emit('receive-conversation', {
+        conversation: {
+          id: c.id,
+          updatedAt: c.updatedAt,
+          User1: c.ConversationOfUser1,
+          User2: c.ConversationOfUser2,
+          LastMessage: c.ConversationHasMessages.length > 0 ? c.ConversationHasMessages[0] : {Content: ""}
+        }
+      });
+
+      return ({
+          id: c.id,
+          updatedAt: c.updatedAt,
+          User1: c.ConversationOfUser1,
+          User2: c.ConversationOfUser2,
+          LastMessage: c.ConversationHasMessages.length > 0 ? c.ConversationHasMessages[0] : {Content: ""}
+        })
     }
     catch (error) {
       await t.rollback();
